@@ -1,0 +1,43 @@
+<%- include("partials/header") %>
+    <div class="container">
+
+        <div class="jumbotron">
+
+            
+            <% if(result.size === 0) { %>
+
+                <h3> No results found for '<%= query %>'.</h3>
+
+            <% } else { %>
+
+                <h3> Search result for '<%= query %>': </h3>
+
+                <% result.forEach(trainer => { %>
+
+                    <div class="figure">
+
+                        <img class="img-fluid img-thumbnail rounded float-left" src="<%= trainer.Img %>">
+
+                        <div class="figure-caption">
+
+                            <h3> <%= trainer.Name%> </h3>
+
+                        </div>
+
+                    </div>
+
+                <% }); %>
+
+                </div>
+            <%  } %>
+                
+            <a href="/index">Go Back</a>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+
+<%- include("partials/footer") %>

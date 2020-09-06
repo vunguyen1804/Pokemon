@@ -1,0 +1,130 @@
+<%- include("partials/header") %>
+
+ <div class="container">
+     <header class="jumbotron">
+
+        <div class="container">
+
+            <h1>Welcome to Pokemon World!</h1>
+
+            <a class="btn btn-primary btn-large" href="/new">Add New Trainer</a>
+
+        </div>
+
+     </header>
+     
+    <header class= "jumbotron">
+
+        <h1>Choose 2 Pokemon to fight:</h1>
+
+        <form action="/fight?_method=PUT" method="POST">
+
+            <div class="form-group row d-flex">
+
+                <div class="col-md-5 col-sm-12">
+                    
+                    <select class="form-control" name="id1" required>
+                        <option value = "" disabled selected>Choose a Pokemon</option>
+
+                        <% pokemon.forEach(pet => { %>
+
+                            <option value= "<%= pet._id %>"> <%= pet.Name %></option>
+
+                        <% }); %>
+
+                    </select>
+                </div>
+
+                <div class="col-md-5 col-sm-12">
+
+                    <select class="form-control" name="id2" required>
+                        
+                        <option value = "" disabled selected>Choose a Pokemon</option>
+
+                        <% pokemon.forEach(pet => { %>
+
+                            <option value= <%= pet._id %>> <%= pet.Name %></option>
+
+                        <% }); %>
+
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-2 col-sm-12">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                </div>
+
+            </div>
+
+        </form>
+        
+    </header>
+
+
+     <% trainers.forEach(trainer => { %>
+
+        <header class="jumbotron">
+
+            <div class="row d-flex">
+                <div class="col-lg-8 col-sm-8">
+                    <img id = "trainer-image" class=" rounded-circle float-left" src="<%= trainer.Img %>">
+                    <h4> <%= trainer.Name %> </h4>
+                </div>
+
+                <div class="col-lg-2 col-sm-2">
+                    <form action="/<%= trainer._id %>?_method=DELETE" method = "POST">
+                        <button class = "btn btn-danger btn-md float-right"> Delete Trainer </button>
+                    </form>
+                    
+                </div>
+
+                <div class="col-lg-2 col-sm-2">
+                    <a class = "btn btn-success btn-md float-right" href="/<%= trainer._id %>/new"> Add a Pokemon</a>
+                </div>
+
+            </div>
+
+            <div>
+                <h6> Owned pokemon: </6>
+            </div>
+
+            <div class="row">
+
+                <% for (let [id, pokemon] of owners[trainer._id].entries()) { %>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+
+                        <div class="figure">
+
+                            <img class="img-fluid img-thumbnail rounded float-left" src="<%= pokemon.Img %>">
+
+                            <div class="figure-caption">
+
+                                <form action="/<%= trainer._id %>/<%= pokemon._id %>?_method=DELETE" method = "POST">
+                                    <button class = "btn btn-danger btn-sm float-right"> Delete </button>
+                                </form>        
+                                
+                                <h5> Name: <%= pokemon.Name %></h5>
+
+                                <h5> Move: <%= pokemon.Move %> </h5>
+
+                                <h5>Type: <%= pokemon.Type %> </h5>
+
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                <% } %>
+
+            </div>
+
+        </header>
+
+    <% }); %>
+
+</div>
+
+<%- include("partials/footer") %>
+

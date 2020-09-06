@@ -1,0 +1,29 @@
+<%- include("partials/header") %>
+
+    <div class="container">
+
+        <div class="jumbotron">
+            <div class="row d-flex">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <img class="img-fluid img-thumbnail rounded float-left" src=<%= pokemon1.Img %>>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <p class="text-center" > <%= pokemon1.Name %> v.s <%= pokemon2.Name %></p>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <img class="img-fluid img-thumbnail rounded float-right" src= <%= pokemon2.Img %>>
+                </div>
+
+            </div>
+            
+            <h1 style="text-align: center"> <%= outcome %> </h1>
+
+            <a href="/index">Go Back</a>
+
+        </div>
+
+    </div>
+
+<%- include("partials/footer") %>
